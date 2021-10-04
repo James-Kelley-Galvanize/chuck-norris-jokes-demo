@@ -20,7 +20,7 @@ class App extends Component {
   async componentDidMount() { // This can also be done with promises!
     let res = await fetch(url);
     let json = await res.json();
-    let value = await json.value;
+    let value = json.value;
     this.setState({ jokeList: value });
   }
 
