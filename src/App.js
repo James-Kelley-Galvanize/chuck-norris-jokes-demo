@@ -11,15 +11,14 @@ class App extends Component {
       jokeList: [],
       selectedJoke:0,
     };
-    this.selectJoke = this.selectJoke.bind(this)
+    this.selectJoke = this.selectJoke.bind(this) // Why is this important?  What is your alternative?
   }
 
   selectJoke(jokeId){
-    console.log(this)
-    this.setState({selectedJoke:jokeId})
+    this.setState({selectedJoke:jokeId}) // Remember, it's important what 'this' is...
   }
 
-  async componentDidMount() {
+  async componentDidMount() { // This can also be done with promises!
     let res = await fetch(url);
     let json = await res.json();
     let value = await json.value;
@@ -31,9 +30,8 @@ class App extends Component {
     return (
       <div className="App">
         <JokeList jokeSelectorFunc={this.selectJoke} list={jokeList} />
-     
-
         {/* <button onClick={()=>{this.selectJoke(`THIS WORKS - WHY?`)}}>CLICK ME</button> */}
+        {/* Comment in the button above if you want - line 14 fixes the problem it makes apparent, though - 'this' is correctly bound in the App.js file, but not in others, unless the function is bound on line 14 or surrounded with an arrow func on line 32*/}
       </div>
     );
   }
