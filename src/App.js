@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
-import react, { Component } from "react";
+import { Component } from "react";
 import JokeList from "./components/JokeList";
 const url = "http://api.icndb.com/jokes/random/10";
 
@@ -26,10 +25,12 @@ class App extends Component {
   }
 
   render() {
-    const { jokeList } = this.state;
+    const {selectJoke} = this;
+    const { jokeList, selectedJoke } = this.state;
+
     return (
       <div className="App">
-        <JokeList jokeSelectorFunc={this.selectJoke} list={jokeList} />
+        <JokeList selectedJoke={selectedJoke} jokeSelectorFunc={selectJoke} list={jokeList} />
         {/* <button onClick={()=>{this.selectJoke(`THIS WORKS - WHY?`)}}>CLICK ME</button> */}
         {/* Comment in the button above if you want - line 14 fixes the problem it makes apparent, though - 'this' is correctly bound in the App.js file, but not in others, unless the function is bound on line 14 or surrounded with an arrow func on line 32*/}
       </div>
